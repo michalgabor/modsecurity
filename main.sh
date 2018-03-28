@@ -20,15 +20,6 @@ if [ "${PROXY_UPSTREAM_HOST}" != "" ]; then
   echo "Upstream host set to '${PROXY_UPSTREAM_HOST}'"
 fi
 
-names=`env | grep CUSTOM_CONFIG_ | sed 's/=.*//'`
-if [ "$names" != "" ]; then
-  while read name; do
-    eval value='$'"${name}"
-    echo "${value}" >> /etc/httpd/modsecurity.d/owasp-crs/crs-setup.conf
-  done <<< "$names"
-fi
-
-
 echo "Adjust access and error logs, shall go to stdout and stderr respectively"
 sed -i".bak" "s,CustomLog \"logs/access_log\" combined,CustomLog \"/dev/stdout\" combined," /etc/httpd/conf/httpd.conf
 sed -i".bak" "s,ErrorLog \"logs/error_log\",ErrorLog \"/dev/stderr\"," /etc/httpd/conf/httpd.conf

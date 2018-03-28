@@ -33,5 +33,8 @@ echo "Adjust access and error logs, shall go to stdout and stderr respectively"
 sed -i".bak" "s,CustomLog \"logs/access_log\" combined,CustomLog \"/dev/stdout\" combined," /etc/httpd/conf/httpd.conf
 sed -i".bak" "s,ErrorLog \"logs/error_log\",ErrorLog \"/dev/stderr\"," /etc/httpd/conf/httpd.conf
 
+sed -i -e "s/LogLevel warn/${LOG_LEVEL}/g" /etc/httpd/conf/httpd.conf
+echo "Set log level to '${LOG_LEVEL}'"
+
 echo "Starting httpd"
 httpd -D FOREGROUND

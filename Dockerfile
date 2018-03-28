@@ -47,7 +47,7 @@ ENV SEC_PRCE_MATCH_LIMIT_RECURSION=500000
 # Keycloak proxy most probably in our case, hence port 3000
 ENV PROXY_UPSTREAM_HOST=localhost:3000
 
-ENV LOG_LEVEL=LogLevel warn
+ENV LOG_LEVEL=warn
 
 COPY main.sh /main.sh
 

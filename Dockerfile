@@ -51,4 +51,5 @@ COPY main.sh /main.sh
 
 COPY proxy.conf /etc/httpd/conf.d/proxy.conf
 
+RUN ["chmod", "+x", "/main.sh"]
 CMD ["/main.sh"]

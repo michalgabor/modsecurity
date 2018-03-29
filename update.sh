@@ -8,5 +8,6 @@ if [ "$names" != "" ]; then
   done <<< "$names"
 fi
 
-sed -i -e "s/remote_addr/x_forwarded_for/g" /etc/httpd/modsecurity.d/owasp-crs/rules/REQUEST-901-INITIALIZATION.conf
+#load real IP from X-Forwarded-For (behind lb / proxy)
+echo 'RemoteIPHeader X-Forwarded-For' >> /etc/httpd/conf/httpd.conf
 

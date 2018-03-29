@@ -57,6 +57,6 @@ COPY proxy.conf /etc/httpd/conf.d/proxy.conf
 RUN ["chmod", "+x", "/main.sh"]
 RUN ["chmod", "+x", "/update.sh"]
 
-RUN ["/update"]
+RUN ["/update.sh"]
 
 CMD ["/main.sh"]

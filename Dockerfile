@@ -50,13 +50,9 @@ ENV PROXY_UPSTREAM_HOST=localhost:3000
 ENV LOG_LEVEL=warn
 
 COPY main.sh /main.sh
-COPY update.sh /update.sh
 
 COPY proxy.conf /etc/httpd/conf.d/proxy.conf
 
 RUN ["chmod", "+x", "/main.sh"]
-RUN ["chmod", "+x", "/update.sh"]
-
-RUN ["/update.sh"]
 
 CMD ["/main.sh"]

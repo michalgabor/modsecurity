@@ -38,7 +38,7 @@ if [ "$names" != "" ]; then
 fi
 
 #load real IP from X-Forwarded-For (behind lb / proxy)
-grep -q -F 'RemoteIPHeader X-Forwarded-For' /etc/httpd/conf/httpd.conf || echo 'RemoteIPHeader X-Forwarded-For' >> /etc/httpd/conf/httpd.con
+grep -q -F 'RemoteIPHeader X-Forwarded-For' /etc/httpd/conf/httpd.conf || echo 'RemoteIPHeader X-Forwarded-For' >> /etc/httpd/conf/httpd.conf
 
 echo "Starting httpd"
 httpd -D FOREGROUND

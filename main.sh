@@ -28,5 +28,17 @@ sed -i".bak" "s,ErrorLog \"logs/error_log\",ErrorLog \"/dev/stderr\"," /etc/http
 sed -i -e "s/LogLevel warn/LogLevel ${LOG_LEVEL}/g" /etc/httpd/conf/httpd.conf
 echo "Set log level to '${LOG_LEVEL}'"
 
+#custom config crs-setup.conf
+names=`env | grep CUSTOM_CONFIG_ | sed 's/=.*//'`
+if [ "$names" != "" ]; then
+  while read name; do
+    eval value='$'"${name}"
+    grep -q -F "${value}" /etc/httpd/modsecurity.d/owasp-crs/crs-setup.conf || echo "${value}" >> /etc/httpd/modsecurity.d/owasp-crs/crs-setup.conf
+  done <<< "$names"
+fi
+
+#load real IP from X-Forwarded-For (behind lb / proxy)
+grep -q -F 'RemoteIPHeader X-Forwarded-For' /etc/httpd/conf/httpd.conf || echo 'RemoteIPHeader X-Forwarded-For' >> /etc/httpd/conf/httpd.con
+
 echo "Starting httpd"
 httpd -D FOREGROUND

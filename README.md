@@ -1,5 +1,7 @@
 # WAF based on ModSecurity
 
+Based on docker image https://github.com/fareoffice/modsecurity-docker
+
 Please use "3.0.2" tag on "fareoffice/modsecurity" image: "fareoffice/modsecurity:3.0.2"  
 We shall keep image versioned according to version of Core Rule Set (CRS) it includes.
 

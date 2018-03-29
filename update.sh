@@ -2,7 +2,7 @@
 
 echo env
 
-echo file_get_contents("/etc/httpd/modsecurity.d/owasp-crs/crs-setup.conf");
+echo "$(/etc/httpd/modsecurity.d/owasp-crs/crs-setup.conf)"
 
 names=`env | grep CUSTOM_CONFIG_ | sed 's/=.*//'`
 if [ "$names" != "" ]; then

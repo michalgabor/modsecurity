@@ -20,6 +20,11 @@ if [ "${PROXY_UPSTREAM_HOST}" != "" ]; then
   echo "Upstream host set to '${PROXY_UPSTREAM_HOST}'"
 fi
 
+if [ "${CUSTOM_CONFIG_PROXY}" != "" ]; then
+  sed -i".bak" "s/#/${CUSTOM_CONFIG_PROXY}/g" /etc/httpd/conf.d/proxy.conf
+  echo "Custom proxy config '${CUSTOM_CONFIG_PROXY}'"
+fi
+
 echo "Adjust access and error logs, shall go to stdout and stderr respectively"
 #disable access log via #CustomLog
 sed -i".bak" "s,CustomLog \"logs/access_log\" combined,\#CustomLog \"/dev/stdout\" combined," /etc/httpd/conf/httpd.conf

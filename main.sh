@@ -20,9 +20,9 @@ if [ "${PROXY_UPSTREAM_HOST}" != "" ]; then
   echo "Upstream host set to '${PROXY_UPSTREAM_HOST}'"
 fi
 
-if [ "${CUSTOM_CONFIG_PROXY}" != "" ]; then
-  sed -i".bak" "s/#/${CUSTOM_CONFIG_PROXY}/g" /etc/httpd/conf.d/proxy.conf
-  echo "Custom proxy config '${CUSTOM_CONFIG_PROXY}'"
+if [ "${CUSTOM_VHOST_CONFIG}" != "" ]; then
+  sed -i".bak" "s/#/${CUSTOM_VHOST_CONFIG}/g" /etc/httpd/conf.d/proxy.conf
+  echo "Custom proxy config '${CUSTOM_VHOST_CONFIG}'"
 fi
 
 echo "Adjust access and error logs, shall go to stdout and stderr respectively"
